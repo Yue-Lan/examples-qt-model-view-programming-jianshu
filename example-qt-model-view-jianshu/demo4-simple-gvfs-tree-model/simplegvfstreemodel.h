@@ -7,6 +7,7 @@ class FileNode;
 
 class SimpleGVfsTreeModel : public QAbstractItemModel
 {
+    friend class SortFilterProxyModel;
     Q_OBJECT
 
 public:

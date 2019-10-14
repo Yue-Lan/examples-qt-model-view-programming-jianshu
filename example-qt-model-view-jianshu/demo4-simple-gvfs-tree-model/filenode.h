@@ -23,6 +23,7 @@ public:
 class FileNode : public QObject
 {
     friend class SimpleGVfsTreeModel;
+    friend class SortFilterProxyModel;
 
     Q_OBJECT
 public:

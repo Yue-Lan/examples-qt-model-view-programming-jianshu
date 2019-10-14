@@ -70,13 +70,19 @@ FileInfo::FileInfo(const QString &uri)
         this->icon = p.icon(QFileIconProvider::File);
     }
 
+    GError *err = nullptr;
     GFileEnumerator *test = g_file_enumerate_children(gfile,
                                                       G_FILE_ATTRIBUTE_STANDARD_NAME,
                                                       G_FILE_QUERY_INFO_NONE,
                                                       nullptr,
-                                                      nullptr);
-    if (test) {
+                                                      &err);
+    if (err) {
+        hasChildren = false;
+        g_error_free(err);
+    } else {
         hasChildren = true;
+    }
+    if (test) {
         g_object_unref(test);
     }
 
